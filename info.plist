@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string></string>
+	<key>connections</key>
+	<dict>
+		<key>7DEFB6B7-A806-465B-8A61-6F85E4E69ED5</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D062BB55-5AB3-4229-A4E3-FACE976653C3</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>CED37C51-0885-411E-9698-42FB6C819222</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>83864CF0-C96A-4E6D-A60B-05784424F383</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D062BB55-5AB3-4229-A4E3-FACE976653C3</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0B66E1C3-37CF-4473-8E55-EB21ACBAE6D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E203F272-76DB-4ED6-AE26-AADE085EAA7F</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>0B66E1C3-37CF-4473-8E55-EB21ACBAE6D8</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>E6E6905D-A918-480D-891A-C43B04D21592</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>E203F272-76DB-4ED6-AE26-AADE085EAA7F</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string></string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Asana</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string># coding: utf-8
+
+import sys
+import asana
+from workflow import Workflow3
+
+
+def main(wf):
+	try:
+		personal_access_token = wf.get_password('asana')
+		client = asana.Client.access_token(personal_access_token)
+		me = client.users.me()
+		workspace_id = me['workspaces'][0]['id']
+		task_name = wf.args[0]
+		task = {'name' : task_name, 'assignee':'me'}
+		client.tasks.create_in_workspace(workspace_id, task)
+		print u'🙌 {}'.format(task_name)
+	except:
+		print u'😰 faild'
+
+if __name__ == '__main__':
+    # Create a global `Workflow3` object
+    wf = Workflow3()
+    sys.exit(wf.run(main))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>D062BB55-5AB3-4229-A4E3-FACE976653C3</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>task</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Add Asana task</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>7DEFB6B7-A806-465B-8A61-6F85E4E69ED5</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<false/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Asana</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>0B66E1C3-37CF-4473-8E55-EB21ACBAE6D8</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>68</integer>
+				<key>script</key>
+				<string># coding: utf-8
+
+import sys
+import asana
+from workflow import Workflow3
+
+
+def main(wf):
+	token = wf.args[0]
+	wf.save_password('asana', token)
+	print(u'🙌')
+
+if __name__ == '__main__':
+    # Create a global `Workflow3` object
+    wf = Workflow3()
+    sys.exit(wf.run(main))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>3</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>E203F272-76DB-4ED6-AE26-AADE085EAA7F</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>asana token</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Setup Asana</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>E6E6905D-A918-480D-891A-C43B04D21592</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<false/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>0</integer>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>2</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>tasks</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<true/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>script</key>
+				<string># coding: utf-8
+
+import sys
+import asana
+from workflow import Workflow3, ICON_WEB
+
+
+def main(wf):
+	personal_access_token = wf.get_password('asana')
+	client = asana.Client.access_token(personal_access_token)
+	me = client.users.me()
+	workspace_id = me['workspaces'][0]['id']
+	tasks = {'assignee': 'me', 'workspace': workspace_id}
+	fields = ['assignee_status','name', 'completed', 'notes']
+	for task in client.tasks.find_all(tasks,fields=fields):
+		should_show = task['assignee_status'] == 'today'
+		should_show &amp;= not task['completed']
+		should_show &amp;= not task['name'].endswith(':')
+		if should_show:
+			add_args = [task['name'], '']
+			add_kwargs = {'arg': task['id'] , 'valid': True}
+			wf.add_item(*add_args, **add_kwargs)
+
+	wf.send_feedback()
+
+if __name__ == '__main__':
+    # Create a global `Workflow3` object
+    wf = Workflow3()
+    sys.exit(wf.run(main))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string></string>
+				<key>title</key>
+				<string>List my tasks for today ...</string>
+				<key>type</key>
+				<integer>3</integer>
+				<key>withspace</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>CED37C51-0885-411E-9698-42FB6C819222</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string></string>
+				<key>spaces</key>
+				<string></string>
+				<key>url</key>
+				<string>https://app.asana.com/0/1/{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>83864CF0-C96A-4E6D-A60B-05784424F383</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>0B66E1C3-37CF-4473-8E55-EB21ACBAE6D8</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>160</integer>
+		</dict>
+		<key>7DEFB6B7-A806-465B-8A61-6F85E4E69ED5</key>
+		<dict>
+			<key>xpos</key>
+			<integer>90</integer>
+			<key>ypos</key>
+			<integer>90</integer>
+		</dict>
+		<key>83864CF0-C96A-4E6D-A60B-05784424F383</key>
+		<dict>
+			<key>xpos</key>
+			<integer>620</integer>
+			<key>ypos</key>
+			<integer>360</integer>
+		</dict>
+		<key>CED37C51-0885-411E-9698-42FB6C819222</key>
+		<dict>
+			<key>xpos</key>
+			<integer>90</integer>
+			<key>ypos</key>
+			<integer>360</integer>
+		</dict>
+		<key>D062BB55-5AB3-4229-A4E3-FACE976653C3</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>90</integer>
+		</dict>
+		<key>E203F272-76DB-4ED6-AE26-AADE085EAA7F</key>
+		<dict>
+			<key>xpos</key>
+			<integer>350</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
+		<key>E6E6905D-A918-480D-891A-C43B04D21592</key>
+		<dict>
+			<key>xpos</key>
+			<integer>90</integer>
+			<key>ypos</key>
+			<integer>220</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
