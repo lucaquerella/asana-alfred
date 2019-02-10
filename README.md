@@ -36,17 +36,4 @@ and you are ready to go.
 
 ### BitBar
 
-If you want to use BitBar integration, you need to download and install BitBar, from its [website](https://getbitbar.com). 
-Then you need to create a plugin folder:
-
-> mkdir "~/Library/Application Support/BitBar/scripts"
-
-ensure BitBar uses it:
-
-> defaults write com.matryer.BitBar.plist pluginsDirectory -string "~/Library/Application\ Support/BitBar/scripts"
-
-
-and link the plugin: 
-
-> ln -s "~/Library/Application Support/Alfred 3/Alfred.alfredpreferences/workflows/{plugin installation folder}/bitbar.py"
-
+I've also created an integration for [BitBar](http://getbitbar.com). If you want to use it, you need to download and install BitBar. Once installed you need to link the script `bitbar.py` located in the Alfred plugin installation folder to the BitBar's script folder.
