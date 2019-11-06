@@ -15,7 +15,7 @@ It also integrates with [BitBar](https://getbitbar.com) to show the tasks direct
 
 # How to install it?
 
-You can download the plugin from [here](https://github.com/lucaquerella/asana-alfred/releases/download/v0.1/Asana.alfredworkflow) and double click to install it.
+You can download the plugin from [here](https://github.com/lucaquerella/asana-alfred/releases/) and double click to install it.
 
 Once you have it installed, you need to generate an Asana token:
 
