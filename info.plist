@@ -102,7 +102,7 @@ def main(wf):
 		personal_access_token = wf.get_password('asana')
 		client = asana.Client.access_token(personal_access_token)
 		me = client.users.me()
-		workspace_id = me['workspaces'][0]['id']
+		workspace_id = me['workspaces'][0]['gid']
 		task_name = wf.args[0]
 		task = {'name' : task_name, 'assignee':'me'}
 		client.tasks.create_in_workspace(workspace_id, task)
